@@ -1,4 +1,5 @@
 from langchain_openai import ChatOpenAI
+from langchain.tools import tool
 
 llm = ChatOpenAI(
   api_key="sk-f9a354e4af734c1d90c42f8c6d9997b4",
@@ -25,3 +26,14 @@ for item in llm.batch_as_completed([
   "祝福一下我"
 ]):
   print(item)
+
+@tool
+def get_weather(location: str) -> str:
+    """Get the weather at a location."""
+    return f"It's sunny in {location}."
+
+model_with_tool = llm.bind_tools([get_weather])
+
+response = model_with_tool.invoke("What's the weather like in Boston?")
+
+print(response)
