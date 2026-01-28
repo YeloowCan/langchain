@@ -8,5 +8,4 @@ dependencies = [
     "langchain-community>=0.4",
     "langchain-core>=1.0.1",
     "langchain-openai>=1.0.0a2",
-    "pygame>=2.6.1",
 ]

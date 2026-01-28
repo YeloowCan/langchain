@@ -16,7 +16,7 @@ model = ChatOpenAI(
   model="deepseek-chat", 
 )
 
-model_with_structure = model.with_structured_output(Movie)
+model_with_structure = model.with_structured_output(Movie, method="function_calling")
 
 repsonse = model_with_structure.invoke("Provide details about the movie Inception")
 
