@@ -4,8 +4,11 @@ version = "0.1.0"
 description = "LangChain development environment"
 requires-python = ">=3.10"
 dependencies = [
+    "duckduckgo-search>=8.1.1",
     "langchain",
     "langchain-community>=0.4",
     "langchain-core>=1.0.1",
     "langchain-openai>=1.0.0a2",
+    "langgraph>=1.0.1",
+    "langgraph-checkpoint-postgres>=3.0.3",
 ]

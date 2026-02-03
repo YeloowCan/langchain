@@ -5,6 +5,7 @@ from langchain.agents.structured_output import ToolStrategy
 from langchain_openai import ChatOpenAI
 from langchain.tools import tool
 from pydantic import BaseModel
+from langchain.tools import ToolRuntime
 
 load_dotenv()
 
@@ -24,15 +25,16 @@ def search(query: str) -> str:
   return f"Result for: {query}"
 
 @tool
-def get_weather(location: str) -> str:
+def get_weather(location: str, runtime: ToolRuntime) -> str:
   """Get weather"""
+  print(runtime)
   return f"Weather in {location}: 30℃"
 
 
 agent = create_agent(
   model, 
   tools=[search, get_weather],
-  response_format=ToolStrategy(WeatherInfo)
+  response_format=ToolStrategy[WeatherInfo](WeatherInfo)
 )
 
 result = agent.invoke({
